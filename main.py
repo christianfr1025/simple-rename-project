@@ -6,14 +6,15 @@ def rename_files_folders(base_dir):
         if not item.stem.startswith('.'):
             if item.is_file():
                 if item.stem != item.stem.upper():
-                    print(f"Renaming \n {item} to \n{os.path.join(item.parent, item.stem.upper() + item.suffix)} \n")
-                    #item.rename(os.path.join(item.parent, item.stem.upper() + item.suffix))
+                    print(f"Renaming \n '{item}' to \n'{os.path.join(item.parent, item.stem.upper() + item.suffix)}' \n")
+                    item.rename(os.path.join(item.parent, item.stem.upper() + item.suffix))
             elif item.is_dir():
-                if item.stem != item.stem.upper():
-                    print(f"Renaming \n {item} to \n{os.path.join(item.parent, item.stem.upper())} \n")
-                    #item.rename(os.path.join(item.parent, item.stem.upper()))
-                rename_files_folders(item)
+                if item.name != item.name.upper():
+                    print(f"Renaming \n '{item}' to \n'{os.path.join(item.parent, item.name.upper())}' \n")
+                    item.rename(os.path.join(item.parent, item.name.upper()))
+                if item.name.find(".lr") == -1 or item.name.find(".LR") == -1:
+                    rename_files_folders(item)
 
 
-base_dir = "/Users/christianmendoza/Desktop/test-folder"
+base_dir = "/Volumes/LI 2020"
 rename_files_folders(base_dir)
